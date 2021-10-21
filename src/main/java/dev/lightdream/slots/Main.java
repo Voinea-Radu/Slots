@@ -4,10 +4,12 @@ import dev.lightdream.api.API;
 import dev.lightdream.api.LightDreamPlugin;
 import dev.lightdream.api.configs.SQLConfig;
 import dev.lightdream.api.databases.User;
-import dev.lightdream.api.managers.DatabaseManager;
 import dev.lightdream.api.managers.MessageManager;
+import dev.lightdream.slots.commands.BaseCommand;
+import dev.lightdream.slots.commands.GiveCommand;
 import dev.lightdream.slots.configs.Config;
 import dev.lightdream.slots.configs.Lang;
+import dev.lightdream.slots.managers.DatabaseManager;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -22,10 +24,16 @@ public final class Main extends LightDreamPlugin {
     public Config config;
     public Lang lang;
 
+    //Managers
+    public DatabaseManager databaseManager;
+
     @Override
     public void onEnable() {
-        init("Slots", "slots", "1.0");
         instance = this;
+
+        init("Slots", "slots", "1.0");
+
+        databaseManager = new DatabaseManager(this);
     }
 
 
@@ -55,6 +63,8 @@ public final class Main extends LightDreamPlugin {
 
     @Override
     public void loadBaseCommands() {
+        baseSubCommands.add(new GiveCommand());
+        baseSubCommands.add(new BaseCommand());
     }
 
     @Override
