@@ -33,8 +33,8 @@ public class SlotsGUI extends GUI {
     public int counterMax;
     public BukkitTask task;
 
-    public SlotsGUI(IAPI api) {
-        super(api);
+    public SlotsGUI(IAPI api, User user) {
+        super(api, user);
         this.run = false;
         this.reward = false;
         this.slots = new ArrayList<>();
@@ -54,7 +54,7 @@ public class SlotsGUI extends GUI {
 
     @Override
     public InventoryProvider getProvider() {
-        return new SlotsGUI(api);
+        return new SlotsGUI(api, getUser());
     }
 
     @Override

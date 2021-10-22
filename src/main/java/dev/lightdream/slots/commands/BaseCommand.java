@@ -14,7 +14,7 @@ public class BaseCommand extends SubCommand {
 
     @Override
     public void execute(User user, List<String> list) {
-        new SlotsGUI(api).open(user);
+        new SlotsGUI(api, user).open();
     }
 
     @Override
